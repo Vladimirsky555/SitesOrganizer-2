@@ -1,6 +1,8 @@
 #include "mover.h"
 #include "ui_mover.h"
 
+#include <QDebug>
+
 Mover::Mover(Storage *s, Catalog *catalog, Folder *folder, Link *link,
              bool flag, QWidget *parent) :
     QDialog(parent),
@@ -15,6 +17,7 @@ Mover::Mover(Storage *s, Catalog *catalog, Folder *folder, Link *link,
      this->flag = flag;
 
      if(flag){
+         this->link->isEdited = true;
          for(int i = 0; i < catalog->getCount(); i++)
          {
              Folder *f = catalog->getFolder(i);
