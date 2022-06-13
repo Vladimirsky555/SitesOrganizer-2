@@ -5,8 +5,6 @@
 Data::Data(QObject *parent) :
     QObject(parent)
 {
-    this->date = QDateTime::currentDateTime();
-
     this->isDeleted = false;
     this->isEdited = false;
     this->isNew = false;
@@ -25,6 +23,7 @@ Data::Data(QObject *parent, QSqlQuery &qry) :
     this->link_name = qry.value("link_name").toString();
     this->link_real = qry.value("link_real").toString();
     this->description = qry.value("description").toString();
+    this->date = qry.value("date").toDateTime();
 
     this->isDeleted = false;
     this->isEdited = false;

@@ -44,7 +44,6 @@ public:
     void selectAll();
     void selectByFolderName(QString folderName);
 
-
     /************************************************/
     // Блок работ с базой данных
     /************************************************/
@@ -54,7 +53,6 @@ public:
     void addItemToDb(Data *item);
     void editItemInDb(Data *item);
     void deleteItemFromDb(Data *item);
-
 
     /************************************************/
     // Блок запуска импорта данных из файла
@@ -105,6 +103,7 @@ protected:
     virtual QVariant dataDisplay(const QModelIndex &I) const;
     virtual QVariant dataForeground(const QModelIndex &I) const;
     virtual QVariant dataTextAlignment(const QModelIndex &I) const;
+    virtual QVariant dataToolTip(const QModelIndex &I) const;
 
 };
 

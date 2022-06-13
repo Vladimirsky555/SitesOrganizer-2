@@ -26,7 +26,8 @@ public:
 
 public:
     Link(QObject *parent = nullptr);
-    Link(QVariant id, QString link_name, QString link_real, QObject *parent = nullptr);
+    Link(QVariant id, QString link_name, QString link_real, QDateTime date,
+         QObject *parent = nullptr);
     virtual ~Link(){}
 
     QVariant Id();

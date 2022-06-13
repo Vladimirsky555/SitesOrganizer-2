@@ -167,7 +167,8 @@ void Model::fillStorage()
                 {
                     Link *link = new Link(items->at(i)->Id(),
                                           items->at(i)->linkName(),
-                                          items->at(i)->linkReal());
+                                          items->at(i)->linkReal(),
+                                          items->at(i)->Date());
                     folder->addLink(link);
                 }
             }
@@ -243,6 +244,7 @@ void Model::selectByFolderName(QString folderName)
                     D->setFolder(folder->Name());
                     D->setlinkName(link->linkName());
                     D->setlinkReal(link->linkReal());
+                    D->setDate(link->Date());
 
                     D->isDeleted = link->isDeleted;
                     D->isEdited = link->isEdited;
@@ -302,6 +304,7 @@ void Model::save_to_db_all()
                 D->setFolder(folder->Name());
                 D->setlinkName(link->linkName());
                 D->setlinkReal(link->linkReal());
+                D->setDate(link->Date());
                 D->isDeleted = link->isDeleted;
                 D->isEdited = link->isEdited;
                 D->isNew = D->isNew;
@@ -489,6 +492,7 @@ void Model::import_File_Model(QString filename)
             pos += rx_link.matchedLength();
             value = rx_link.cap(0);
             item->setlinkReal(value);
+            item->setDate(QDateTime::currentDateTime());
 
             //Добавляем в базу данных, полученный айтем
             import_to_db_item(item);
@@ -574,8 +578,9 @@ void Model::editItem(const QModelIndex &I, QWidget *parent)
 void Model::newItem()
 {
     Link *L = new Link();
-    currentFolder->addLink(L);
     L->isNew = true;
+    L->setDate(QDateTime::currentDateTime());
+    currentFolder->addLink(L);    
 
     LinkDialog ld(L);
     ld.exec();
@@ -698,6 +703,7 @@ QVariant Model::data(const QModelIndex &I, int role) const
     case Qt::FontRole:          return dataFont(I);
     case Qt::ForegroundRole:    return dataForeground(I);
     case Qt::TextAlignmentRole: return dataTextAlignment(I);
+    case Qt::ToolTipRole:       return dataToolTip(I);
     default: return QVariant();
     }
 }
@@ -771,6 +777,23 @@ QVariant Model::dataTextAlignment(const QModelIndex &I) const
 //    Result |= Qt::AlignLeft;
 //    return Result;
     return QVariant();
+}
+
+QVariant Model::dataToolTip(const QModelIndex &I) const
+{
+    Data *D = items->at(I.row());
+    if(!D) return QVariant();
+
+    //Работает в табличном представлении
+//    switch (I.column()) {
+    //Сработает если дата истечения валидная
+//    case 2: {
+        if(!D->Date().isValid())return QVariant();
+        return QString("Дата создания: %1").arg(D->Date().toString("dd.MM.yyyy"));
+        //return D->Date().toLocalTime();
+//    }
+//    default: return QVariant();
+//    }
 }
 
 Qt::ItemFlags Model::flags(const QModelIndex &) const
