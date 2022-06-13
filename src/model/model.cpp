@@ -433,6 +433,8 @@ QStringList Model::importFolders(int countLines, QString filename)
 //Импорт всех ссылок с разбивкой на папки
 void Model::import_File_Model(QString filename)
 {
+    if(filename == "") return;
+
     QFile file;
     QRegExp rx_name; rx_name.setPattern("\">[^</A>]+");
     QRegExp rx_link; rx_link.setPattern("(http|https)://[^\"]+");

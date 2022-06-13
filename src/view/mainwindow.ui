@@ -47,11 +47,20 @@
    <addaction name="menudss"/>
   </widget>
   <action name="actionFileToModel">
+   <property name="icon">
+    <iconset resource="../../bin/img.qrc">
+     <normaloff>:/images/move.png</normaloff>:/images/move.png</iconset>
+   </property>
    <property name="text">
     <string>Экспорт</string>
    </property>
+   <property name="toolTip">
+    <string>Экспорт ссылок из файла</string>
+   </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../bin/img.qrc"/>
+ </resources>
  <connections/>
 </ui>
