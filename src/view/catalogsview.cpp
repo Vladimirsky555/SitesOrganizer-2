@@ -45,6 +45,7 @@ void CatalogsView::refresh()
     for(int i = 0; i < s->getCount(); i++)
     {
         addItem(s->getCatalogById(i)->Name());
+        item(i)->setIcon(QIcon(":/images/list.png"));
     }
 }
 
@@ -184,7 +185,7 @@ void CatalogsView::delItem(const QModelIndex &I, QWidget *parent)
         }
     }
 
-    //Если папка новая, то удаляется после того как были удалены ссылки папки
+    //Папка удаляется после того как были удалены ссылки папки
     if(catalog->isNew)
     {
         s->deleteCatalog(catalog);
@@ -200,6 +201,11 @@ void CatalogsView::currentChanged(const QModelIndex &current, const QModelIndex 
 {
     //Вызываем функцию базового класса
     QListWidget::currentChanged(current, previous);
+
+    item(current.row())->setIcon(QIcon(":/images/current.png"));
+
+    if(previous.isValid())
+    item(previous.row())->setIcon(QIcon(":/images/list.png"));
 
     if(current.isValid())
     {

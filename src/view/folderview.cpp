@@ -51,20 +51,29 @@ FolderView::FolderView(QWidget *parent) :
 
 void FolderView::refresh()
 {
-    int count = currentCatalog->getCount();
-    if(count == 0) return;
+    int currentCount = currentCatalog->getCount();
+    if(currentCount == 0) return;
 
-    for(int j = 0; j < count; j++)
+    for(int j = 0; j < currentCount; j++)
     {
         Folder *folder = currentCatalog->getFolder(j);
         addItem(folder->Name());
     }    
 
-    if(currentCatalog->isEdited){
+    //Мы делаем папки невидимыми, поэтому каждый раз
+    //приходится пробегаться и устанавливать иконку
+    for(int i = 0; i < count(); i++)
+    {
+        item(i)->setIcon(QIcon(":/images/list.png"));
+    }
+
+    if(currentCatalog->isEdited)
+    {
         markEdited();
     }
 
-    if(currentCatalog->isDeleted){
+    if(currentCatalog->isDeleted)
+    {
         markDeleted();
     } else {
         markRestored();
@@ -114,6 +123,7 @@ void FolderView::acceptStorage(Storage *s)
 void FolderView::acceptCatalog(Catalog *catalog)
 {
     this->currentCatalog = catalog;
+
     refresh();
 }
 
@@ -122,7 +132,7 @@ void FolderView::acceptClear()
     for(int i = 0; i < count(); i++)
     {
         item(i)->setHidden(true);
-    }
+    }    
 }
 
 
@@ -297,6 +307,11 @@ void FolderView::currentChanged(const QModelIndex &current, const QModelIndex &p
 {
     //Вызываем функцию базового класса
     QListWidget::currentChanged(current, previous);
+
+    item(current.row())->setIcon(QIcon(":/images/current.png"));
+
+    if(previous.isValid())
+    item(previous.row())->setIcon(QIcon(":/images/list.png"));
 
     QString folder = item(currentRow())->text();
 

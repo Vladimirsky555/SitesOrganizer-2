@@ -103,7 +103,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(cv, SIGNAL(clearLinks()),
             lw->model(), SLOT(acceptClear()));
 
-    //Передача названия каталога из CatalogsView в FoldersView для отображения папок каталога
+    //Передача названия каталога из CatalogsView в FoldersView
+    //для отображения папок каталога
     connect(cv, SIGNAL(sendCatalog(Catalog*)),
             fv, SLOT(acceptCatalog(Catalog*)));
 

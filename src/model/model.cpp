@@ -7,10 +7,6 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QSqlRecord>
-//#include <QFont>
-//#include <QColor>
-//#include <QAction>
-//#include <QRegExp>
 
 Model::Model(QObject *parent) : QSqlTableModel(parent)
 {

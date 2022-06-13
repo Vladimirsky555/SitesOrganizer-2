@@ -9,5 +9,7 @@
         <file>images/import.png</file>
         <file>images/move.png</file>
         <file>images/app.ico</file>
+        <file>images/list.png</file>
+        <file>images/current.png</file>
     </qresource>
 </RCC>
