@@ -11,32 +11,38 @@ Mover::Mover(Storage *s, Catalog *catalog, Folder *folder, Link *link,
     ui->setupUi(this);
 
     this->s = s;
-     this->catalog = catalog;
-     this->folder = folder;
-     this->link = link;
-     this->flag = flag;
+    this->catalog = catalog;
+    this->folder = folder;
+    this->link = link;
+    this->flag = flag;
 
-     if(flag){
-         this->link->isEdited = true;
-         for(int i = 0; i < catalog->getCount(); i++)
-         {
-             Folder *f = catalog->getFolder(i);
+    if(flag){
+        this->link->isEdited = true;
+        for(int i = 0; i < catalog->getCount(); i++)
+        {
+            Folder *f = catalog->getFolder(i);
 
-             if(f != folder){
+            if(f != folder)
+            {
                 ui->lstItems->addItem(f->Name());
-             }
-         }
-     } else {
-         for(int i = 0; i < s->getCount(); i++)
-         {
-             Catalog *cat = s->getCatalogById(i);
+            }
+        }
+    } else {
+        for(int j = 0; j < s->getCount(); j++)
+        {
+            Catalog *cat = s->getCatalogById(j);
 
-             if(cat != catalog){
-                 ui->lstItems->addItem(cat->Name());
-             }
-         }
+            if(cat != catalog)
+            {
+                ui->lstItems->addItem(cat->Name());
+            }
+        }
+    }
 
-     }
+    for(int i = 0; i < ui->lstItems->count(); i++)
+    {
+        ui->lstItems->item(i)->setIcon(QIcon(":/images/insert.png"));
+    }
 }
 
 Mover::~Mover()
@@ -47,21 +53,21 @@ Mover::~Mover()
 void Mover::on_lstItems_clicked(const QModelIndex &I)
 {
     if(flag){
-            QString folderName = ui->lstItems->item(I.row())->data(Qt::DisplayRole).toString();
-            Folder *to = catalog->getFolderByName(folderName);
+        QString folderName = ui->lstItems->item(I.row())->data(Qt::DisplayRole).toString();
+        Folder *to = catalog->getFolderByName(folderName);
 
-            to->addLink(link);//добавляем в новую папку
-            folder->deleteLink(link);//удаляем из старой папки ссылку
+        to->addLink(link);//добавляем в новую папку
+        folder->deleteLink(link);//удаляем из старой папки ссылку
 
-        } else {
+    } else {
 
-            QString catalogName = ui->lstItems->item(I.row())->data(Qt::DisplayRole).toString();
-            Catalog *to = s->getCatalogByName(catalogName);
+        QString catalogName = ui->lstItems->item(I.row())->data(Qt::DisplayRole).toString();
+        Catalog *to = s->getCatalogByName(catalogName);
 
-            to->addFolder(folder);//добавляем в новый каталог папку
-            catalog->deleteFolder(folder);//удаляем из старого каталога папку
-        }
+        to->addFolder(folder);//добавляем в новый каталог папку
+        catalog->deleteFolder(folder);//удаляем из старого каталога папку
+    }
 
-        emit moved();
-        close();
+    emit moved();
+    close();
 }

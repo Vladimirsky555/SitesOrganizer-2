@@ -11,5 +11,6 @@
         <file>images/app.ico</file>
         <file>images/list.png</file>
         <file>images/current.png</file>
+        <file>images/insert.png</file>
     </qresource>
 </RCC>
