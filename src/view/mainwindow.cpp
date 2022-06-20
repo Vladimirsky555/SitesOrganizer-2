@@ -3,9 +3,9 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QDockWidget>
-
 #include <QStyle>
 #include <QDesktopWidget>
+#include <QToolBar>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -34,28 +34,47 @@ MainWindow::MainWindow(QWidget *parent)
         )
     );
 
+    //Несколько тестовых припаркованных окон. Пункт меню для окон
+//    QIcon Ic(":/images/move.png");
+    QMenu *mWindows = menuBar()->addMenu(tr("Windows"));
+
     //Представление для ссылок
     LinksView *lw = new LinksView(this);
     setCentralWidget(lw);
 
     //Представление для папок
     CatalogsView *cv = new CatalogsView(this);
+    cv->setStyleSheet("background: #FAF0E6");
     QDockWidget *D2 = new QDockWidget(this);
-    D2->setWindowTitle("Каталоги");
+    D2->setWindowTitle(tr("Catalogs"));
     D2->setWidget(cv);
     addDockWidget(Qt::LeftDockWidgetArea, D2);
+    mWindows->addAction(D2->toggleViewAction());
 
     FolderView *fv = new FolderView(this);
+    cv->setStyleSheet("background: #FAF0E6");
     QDockWidget *D1 = new QDockWidget(this);
-    D1->setWindowTitle("Папки");
+    D1->setWindowTitle(tr("Folders"));
     D1->setWidget(fv);
     addDockWidget(Qt::LeftDockWidgetArea, D1);
+    mWindows->addAction(D1->toggleViewAction());
 
     bar = new QProgressBar(this);
     QDockWidget *D3 = new QDockWidget(this);
-    D3->setWindowTitle("Progress bar");
+    D3->setWindowTitle(tr("Progress bar"));
     D3->setWidget(bar);
     addDockWidget(Qt::BottomDockWidgetArea, D3);
+    mWindows->addAction(D3->toggleViewAction());
+
+    //Создание панели инструментов с событиями и пустой
+    QToolBar *tbModes = new QToolBar(this);
+    tbModes->setWindowTitle(tr("Modes"));
+    tbModes->addAction(ui->actionFileToModel);
+    addToolBar(Qt::LeftToolBarArea, tbModes);
+
+    QToolBar *tbEmpty = new QToolBar(this);
+    tbEmpty->setWindowTitle(tr("Empty"));
+    addToolBar(Qt::LeftToolBarArea, tbEmpty);
 
     //Организация прогресс-бара
     counter = new Counter();
