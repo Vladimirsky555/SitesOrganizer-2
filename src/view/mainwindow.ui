@@ -40,7 +40,7 @@
    </property>
    <widget class="QMenu" name="menudss">
     <property name="title">
-     <string>Меню</string>
+     <string>Menu</string>
     </property>
     <addaction name="actionFileToModel"/>
    </widget>

@@ -16,14 +16,14 @@ CatalogsView::CatalogsView(QWidget *parent) :
 
     {
         QAction *A = actNew = new QAction(this);
-        A->setText(tr("Добавить"));
+        A->setText(tr("Add"));
         QPixmap p(":/images/add.png"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(triggered()), this, SLOT(newItem()));
         addAction(A);
     }{
         PosAction *A = actEdit = new PosAction(this);
-        A->setText(tr("Редактировать"));
+        A->setText(tr("Edit"));
         QPixmap p(":/images/edit.png"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
@@ -31,7 +31,7 @@ CatalogsView::CatalogsView(QWidget *parent) :
         addAction(A);
     }{
         PosAction *A = actDelete = new PosAction(this);
-        A->setText(tr("Удалить"));
+        A->setText(tr("Delete"));
         QPixmap p(":/images/delete.png"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
@@ -66,9 +66,9 @@ void CatalogsView::contextMenuRequsted(const QPoint &p)
         actDelete->pWidget = this;
         if(item(I.row())->font().strikeOut())
         {
-            actDelete->setText("Восстановить");
+            actDelete->setText(tr("Restore"));
         } else {
-            actDelete->setText("Удалить");
+            actDelete->setText(tr("Delete"));
         }
         M.addAction(actDelete);
     }

@@ -65,4 +65,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    bin/img.qrc
+    bin/img.qrc \
+    bin/lan.qrc
+
+TRANSLATIONS += bin/so_rus.ts

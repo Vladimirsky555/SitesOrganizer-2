@@ -23,7 +23,7 @@ LinksView::LinksView(QWidget *parent) :
 
     {
         PosAction *A = actEdit = new PosAction(this);
-        A->setText(tr("Редактировать"));
+        A->setText(tr("Edit"));
         QPixmap p(":/images/edit.png"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
@@ -31,14 +31,14 @@ LinksView::LinksView(QWidget *parent) :
         addAction(A);
     }{
         QAction *A = actNew = new QAction(this);
-        A->setText(tr("Добавить"));
+        A->setText(tr("Add"));
         QPixmap p(":/images/add.png"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(triggered()), M, SLOT(newItem()));
         addAction(A);
     }{
         PosAction *A = actDelete = new PosAction(this);
-        A->setText(tr("Удалить"));
+        A->setText(tr("Delete"));
         QPixmap p(":/images/delete.png"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
@@ -46,7 +46,7 @@ LinksView::LinksView(QWidget *parent) :
         addAction(A);
     }{
         QAction *A = actOpen = new PosAction(this);
-        A->setText(tr("Открыть"));
+        A->setText(tr("Open"));
         QPixmap p(":/images/icons8-website-80.png"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
@@ -54,7 +54,7 @@ LinksView::LinksView(QWidget *parent) :
         addAction(A);
     }{
         QAction *A = actMove = new PosAction(this);
-        A->setText(tr("Переместить"));
+        A->setText(tr("Move"));
         QPixmap p(":/images/move.png"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
@@ -122,9 +122,9 @@ void LinksView::contextMenuRequsted(const QPoint &p)
 
                 if(l->isDeleted)
                 {
-                    actDelete->setText("Восстановить");
+                    actDelete->setText(tr("Restore"));
                 } else {
-                    actDelete->setText("Удалить");
+                    actDelete->setText(tr("Delete"));
                 }
             }
         }

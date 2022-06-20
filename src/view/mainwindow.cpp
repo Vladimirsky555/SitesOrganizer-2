@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Припаркованное окно представления для папок
     FolderView *fv = new FolderView(this);
-    cv->setStyleSheet("background: #FAF0E6");
+    fv->setStyleSheet("background: #FAF0E6");
     QDockWidget *D1 = new QDockWidget(this);
     D1->setWindowTitle(tr("Folders"));
     D1->setWidget(fv);

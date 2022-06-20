@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/lan">
+        <file alias="rus">lang/so_rus.qm</file>
+    </qresource>
+</RCC>

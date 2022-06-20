@@ -5,12 +5,17 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QFile>
+#include <QTranslator>
 
 
 Application::Application(int argc, char *argv[]) :
     QApplication(argc, argv)
 {
     connectToDataBase();
+
+    pTranslator = new QTranslator(this);
+    pTranslator->load(":lan/rus");
+    installTranslator(pTranslator);
 }
 
 void Application::connectToDataBase()

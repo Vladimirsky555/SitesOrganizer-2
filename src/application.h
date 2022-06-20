@@ -4,12 +4,15 @@
 #include <QApplication>
 #include <QSqlDatabase>
 
+class QTranslator;
+
 
 class Application : public QApplication
 {
     Q_OBJECT
 
     QSqlDatabase db;
+    QTranslator *pTranslator;
 
 public:
     Application(int argc, char *argv[]);
