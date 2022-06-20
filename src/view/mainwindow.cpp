@@ -35,14 +35,14 @@ MainWindow::MainWindow(QWidget *parent)
     );
 
     //Несколько тестовых припаркованных окон. Пункт меню для окон
-//    QIcon Ic(":/images/move.png");
+    //QIcon Ic(":/images/move.png"); //menuBar()->addMenu(Ic, tr("Windows"));
     QMenu *mWindows = menuBar()->addMenu(tr("Windows"));
 
     //Представление для ссылок
     LinksView *lw = new LinksView(this);
     setCentralWidget(lw);
 
-    //Представление для папок
+    //Припаркованное окно представления для каталогов
     CatalogsView *cv = new CatalogsView(this);
     cv->setStyleSheet("background: #FAF0E6");
     QDockWidget *D2 = new QDockWidget(this);
@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     addDockWidget(Qt::LeftDockWidgetArea, D2);
     mWindows->addAction(D2->toggleViewAction());
 
+    //Припаркованное окно представления для папок
     FolderView *fv = new FolderView(this);
     cv->setStyleSheet("background: #FAF0E6");
     QDockWidget *D1 = new QDockWidget(this);
@@ -59,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
     addDockWidget(Qt::LeftDockWidgetArea, D1);
     mWindows->addAction(D1->toggleViewAction());
 
+    //Припаркованное окно прогрессбара
     bar = new QProgressBar(this);
     QDockWidget *D3 = new QDockWidget(this);
     D3->setWindowTitle(tr("Progress bar"));
@@ -67,10 +69,10 @@ MainWindow::MainWindow(QWidget *parent)
     mWindows->addAction(D3->toggleViewAction());
 
     //Создание панели инструментов с событиями и пустой
-    QToolBar *tbModes = new QToolBar(this);
-    tbModes->setWindowTitle(tr("Modes"));
-    tbModes->addAction(ui->actionFileToModel);
-    addToolBar(Qt::LeftToolBarArea, tbModes);
+    QToolBar *tb = new QToolBar(this);
+    tb->setWindowTitle(tr("ToolBar"));
+    tb->addAction(ui->actionFileToModel);
+    addToolBar(Qt::LeftToolBarArea, tb);
 
     QToolBar *tbEmpty = new QToolBar(this);
     tbEmpty->setWindowTitle(tr("Empty"));
