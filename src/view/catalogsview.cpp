@@ -17,14 +17,14 @@ CatalogsView::CatalogsView(QWidget *parent) :
     {
         QAction *A = actNew = new QAction(this);
         A->setText(tr("Add"));
-        QPixmap p(":/images/add.png"); A->setIcon(QIcon(p));
+        QPixmap p(":/icons/add"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(triggered()), this, SLOT(newItem()));
         addAction(A);
     }{
         PosAction *A = actEdit = new PosAction(this);
         A->setText(tr("Edit"));
-        QPixmap p(":/images/edit.png"); A->setIcon(QIcon(p));
+        QPixmap p(":/icons/edit"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
                 this, SLOT(editItem(QModelIndex,QWidget*)));
@@ -32,7 +32,7 @@ CatalogsView::CatalogsView(QWidget *parent) :
     }{
         PosAction *A = actDelete = new PosAction(this);
         A->setText(tr("Delete"));
-        QPixmap p(":/images/delete.png"); A->setIcon(QIcon(p));
+        QPixmap p(":/icons/delete"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
                 this, SLOT(delItem(QModelIndex,QWidget*)));
@@ -45,7 +45,7 @@ void CatalogsView::refresh()
     for(int i = 0; i < s->getCount(); i++)
     {
         addItem(s->getCatalogById(i)->Name());
-        item(i)->setIcon(QIcon(":/images/list.png"));
+        item(i)->setIcon(QIcon(":/icons/list"));
     }
 }
 
@@ -202,10 +202,10 @@ void CatalogsView::currentChanged(const QModelIndex &current, const QModelIndex 
     //Вызываем функцию базового класса
     QListWidget::currentChanged(current, previous);
 
-    item(current.row())->setIcon(QIcon(":/images/current.png"));
+    item(current.row())->setIcon(QIcon(":/icons/current"));
 
     if(previous.isValid())
-    item(previous.row())->setIcon(QIcon(":/images/list.png"));
+    item(previous.row())->setIcon(QIcon(":/icons/list"));
 
     if(current.isValid())
     {

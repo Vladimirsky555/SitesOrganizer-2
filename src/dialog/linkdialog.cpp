@@ -7,7 +7,7 @@ LinkDialog::LinkDialog(Link *L, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setWindowTitle("Редактирование элемента");
+    setWindowTitle(tr("Edit item"));
     this->L = L;
     load();
 }

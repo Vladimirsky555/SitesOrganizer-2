@@ -18,14 +18,14 @@ FolderView::FolderView(QWidget *parent) :
     {
         QAction *A = actNew = new QAction(this);
         A->setText(tr("Add"));
-        QPixmap p(":/images/add.png"); A->setIcon(QIcon(p));
+        QPixmap p(":/icons/add"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(triggered()), this, SLOT(newItem()));
         addAction(A);
     }{
         PosAction *A = actEdit = new PosAction(this);
         A->setText(tr("Edit"));
-        QPixmap p(":/images/edit.png"); A->setIcon(QIcon(p));
+        QPixmap p(":/icons/edit"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
                 this, SLOT(editItem(QModelIndex,QWidget*)));
@@ -33,7 +33,7 @@ FolderView::FolderView(QWidget *parent) :
     }{
         PosAction *A = actDelete = new PosAction(this);
         A->setText(tr("Delete"));
-        QPixmap p(":/images/delete.png"); A->setIcon(QIcon(p));
+        QPixmap p(":/icons/delete"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
                 this, SLOT(delItem(QModelIndex,QWidget*)));
@@ -41,7 +41,7 @@ FolderView::FolderView(QWidget *parent) :
     }{
         PosAction *A = actMove = new PosAction(this);
         A->setText(tr("Move"));
-        QPixmap p(":/images/move.png"); A->setIcon(QIcon(p));
+        QPixmap p(":/icons/move"); A->setIcon(QIcon(p));
         A->setFont(QFont ("MS Shell Dlg 2", 10));
         connect(A, SIGNAL(actionOnItem(QModelIndex,QWidget*)),
                 this, SLOT(moveItem(QModelIndex,QWidget*)));
@@ -64,7 +64,7 @@ void FolderView::refresh()
     //приходится пробегаться и устанавливать иконку
     for(int i = 0; i < count(); i++)
     {
-        item(i)->setIcon(QIcon(":/images/list.png"));
+        item(i)->setIcon(QIcon(":/icons/list"));
     }
 
     if(currentCatalog->isEdited)
@@ -111,7 +111,6 @@ void FolderView::markRestored()
     for(int i = 0; i < count(); i++)
     {
         item(i)->setFont(font);
-//        qDebug() << item(i)->data(Qt::DisplayRole).toString();
     }
 }
 
@@ -134,7 +133,6 @@ void FolderView::acceptClear()
         item(i)->setHidden(true);
     }    
 }
-
 
 
 void FolderView::newItem()
@@ -308,10 +306,10 @@ void FolderView::currentChanged(const QModelIndex &current, const QModelIndex &p
     //Вызываем функцию базового класса
     QListWidget::currentChanged(current, previous);
 
-    item(current.row())->setIcon(QIcon(":/images/current.png"));
+    item(current.row())->setIcon(QIcon(":/icons/current"));
 
     if(previous.isValid())
-    item(previous.row())->setIcon(QIcon(":/images/list.png"));
+    item(previous.row())->setIcon(QIcon(":/icons/list"));
 
     QString folder = item(currentRow())->text();
 

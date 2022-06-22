@@ -1,16 +1,14 @@
 <RCC>
-    <qresource prefix="/">
-        <file>images/ok.png</file>
-        <file>images/add.png</file>
-        <file>images/close.png</file>
-        <file>images/delete.png</file>
-        <file>images/edit.png</file>
-        <file>images/icons8-website-80.png</file>
-        <file>images/import.png</file>
-        <file>images/move.png</file>
+    <qresource prefix="/icons">
+        <file alias="add">images/add.png</file>
         <file>images/app.ico</file>
-        <file>images/list.png</file>
-        <file>images/current.png</file>
-        <file>images/insert.png</file>
+        <file alias="close">images/close.png</file>
+        <file alias="current">images/current.png</file>
+        <file alias="delete">images/delete.png</file>
+        <file alias="edit">images/edit.png</file>
+        <file alias="open">images/icons8-website-80.png</file>
+        <file alias="insert">images/insert.png</file>
+        <file alias="list">images/list.png</file>
+        <file alias="move">images/move.png</file>
     </qresource>
 </RCC>

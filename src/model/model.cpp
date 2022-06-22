@@ -305,9 +305,6 @@ void Model::save_to_db_all()
                 D->setlinkName(link->linkName());
                 D->setlinkReal(link->linkReal());
                 D->setDate(link->Date());
-                D->isDeleted = link->isDeleted;
-                D->isEdited = link->isEdited;
-                D->isNew = D->isNew;
 
                 if(link->isNew){
                     addItemToDb(D);
@@ -723,11 +720,11 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
     case Qt::DisplayRole:
         switch (section)
         {
-        case 0: return tr("Номер");
-        case 1: return tr("Каталог");
-        case 2: return tr("Папка");
-        case 3: return tr("Название");
-        case 4: return tr("Ссылка");
+        case 0: return tr("Number");
+        case 1: return tr("Catalog");
+        case 2: return tr("Folder");
+        case 3: return tr("Name");
+        case 4: return tr("Link");
         default: return QVariant();
         }
     case Qt::TextAlignmentRole:

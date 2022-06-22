@@ -41,7 +41,7 @@ Mover::Mover(Storage *s, Catalog *catalog, Folder *folder, Link *link,
 
     for(int i = 0; i < ui->lstItems->count(); i++)
     {
-        ui->lstItems->item(i)->setIcon(QIcon(":/images/insert.png"));
+        ui->lstItems->item(i)->setIcon(QIcon(":/icons/insert"));
     }
 }
 

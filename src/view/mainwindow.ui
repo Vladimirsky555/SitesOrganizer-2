@@ -49,7 +49,7 @@
   <action name="actionFileToModel">
    <property name="icon">
     <iconset resource="../../bin/img.qrc">
-     <normaloff>:/images/move.png</normaloff>:/images/move.png</iconset>
+     <normaloff>:/icons/move</normaloff>:/icons/move</iconset>
    </property>
    <property name="text">
     <string>Экспорт</string>
