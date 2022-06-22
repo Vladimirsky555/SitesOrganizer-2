@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Припаркованное окно представления для каталогов
     CatalogsView *cv = new CatalogsView(this);
-    cv->setStyleSheet("background: #FAF0E6");
+    //cv->setStyleSheet("background: #FAF0E6");
     QDockWidget *D2 = new QDockWidget(this);
     D2->setWindowTitle(tr("Catalogs"));
     D2->setWidget(cv);
@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Припаркованное окно представления для папок
     FolderView *fv = new FolderView(this);
-    fv->setStyleSheet("background: #FAF0E6");
+    //fv->setStyleSheet("background: #FAF0E6");
     QDockWidget *D1 = new QDockWidget(this);
     D1->setWindowTitle(tr("Folders"));
     D1->setWidget(fv);

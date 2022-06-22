@@ -12,19 +12,37 @@
 <context>
     <name>CatalogsView</name>
     <message>
-        <location filename="../src/view/catalogsview.cpp" line="19"/>
         <source>Добавить</source>
+        <translation type="vanished">Добавить</translation>
+    </message>
+    <message>
+        <source>Редактировать</source>
+        <translation type="vanished">Редактировать</translation>
+    </message>
+    <message>
+        <source>Удалить</source>
+        <translation type="vanished">Удалить</translation>
+    </message>
+    <message>
+        <location filename="../src/view/catalogsview.cpp" line="19"/>
+        <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../src/view/catalogsview.cpp" line="26"/>
-        <source>Редактировать</source>
+        <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
         <location filename="../src/view/catalogsview.cpp" line="34"/>
-        <source>Удалить</source>
+        <location filename="../src/view/catalogsview.cpp" line="71"/>
+        <source>Delete</source>
         <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="../src/view/catalogsview.cpp" line="69"/>
+        <source>Restore</source>
+        <translation>Восстановить</translation>
     </message>
 </context>
 <context>
@@ -38,19 +56,36 @@
 <context>
     <name>FolderView</name>
     <message>
-        <location filename="../src/view/folderview.cpp" line="20"/>
         <source>Добавить</source>
+        <translation type="vanished">Добавить</translation>
+    </message>
+    <message>
+        <source>Редактировать</source>
+        <translation type="vanished">Редактировать</translation>
+    </message>
+    <message>
+        <source>Удалить</source>
+        <translation type="vanished">Удалить</translation>
+    </message>
+    <message>
+        <location filename="../src/view/folderview.cpp" line="20"/>
+        <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../src/view/folderview.cpp" line="27"/>
-        <source>Редактировать</source>
+        <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
         <location filename="../src/view/folderview.cpp" line="35"/>
-        <source>Удалить</source>
+        <source>Delete</source>
         <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="../src/view/folderview.cpp" line="43"/>
+        <source>Move</source>
+        <translation>Переместить</translation>
     </message>
 </context>
 <context>
@@ -61,18 +96,30 @@
         <translation>Добавить ссылку</translation>
     </message>
     <message>
-        <location filename="../src/dialog/linkdialog.ui" line="42"/>
         <source>Имя ссылки:</source>
-        <translation>Имя ссылки</translation>
+        <translation type="vanished">Имя ссылки</translation>
+    </message>
+    <message>
+        <source>Ссылка:</source>
+        <translation type="vanished">Ссылка</translation>
+    </message>
+    <message>
+        <source>Описание:</source>
+        <translation type="vanished">Описание</translation>
+    </message>
+    <message>
+        <location filename="../src/dialog/linkdialog.ui" line="42"/>
+        <source>Link name:</source>
+        <translation>Название ссылки</translation>
     </message>
     <message>
         <location filename="../src/dialog/linkdialog.ui" line="59"/>
-        <source>Ссылка:</source>
+        <source>Link:</source>
         <translation>Ссылка</translation>
     </message>
     <message>
         <location filename="../src/dialog/linkdialog.ui" line="76"/>
-        <source>Описание:</source>
+        <source>Description:</source>
         <translation>Описание</translation>
     </message>
     <message>
@@ -85,33 +132,64 @@
         <source>Добавить</source>
         <translation>Добавить</translation>
     </message>
+    <message>
+        <location filename="../src/dialog/linkdialog.cpp" line="10"/>
+        <source>Edit item</source>
+        <translation>Редактирование элемента</translation>
+    </message>
 </context>
 <context>
     <name>LinksView</name>
     <message>
-        <location filename="../src/view/linksview.cpp" line="26"/>
         <source>Редактировать</source>
+        <translation type="vanished">Редактировать</translation>
+    </message>
+    <message>
+        <source>Добавить</source>
+        <translation type="vanished">ДОбавить</translation>
+    </message>
+    <message>
+        <source>Удалить</source>
+        <translation type="vanished">Удалить</translation>
+    </message>
+    <message>
+        <source>Открыть</source>
+        <translation type="vanished">Открыть ссылку</translation>
+    </message>
+    <message>
+        <source>Переместить</source>
+        <translation type="vanished">Переместить</translation>
+    </message>
+    <message>
+        <location filename="../src/view/linksview.cpp" line="26"/>
+        <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
         <location filename="../src/view/linksview.cpp" line="34"/>
-        <source>Добавить</source>
-        <translation>ДОбавить</translation>
+        <source>Add</source>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../src/view/linksview.cpp" line="41"/>
-        <source>Удалить</source>
+        <location filename="../src/view/linksview.cpp" line="127"/>
+        <source>Delete</source>
         <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../src/view/linksview.cpp" line="49"/>
-        <source>Открыть</source>
-        <translation>Открыть ссылку</translation>
+        <source>Open</source>
+        <translation>Открыть</translation>
     </message>
     <message>
         <location filename="../src/view/linksview.cpp" line="57"/>
-        <source>Переместить</source>
+        <source>Move</source>
         <translation>Переместить</translation>
+    </message>
+    <message>
+        <location filename="../src/view/linksview.cpp" line="125"/>
+        <source>Restore</source>
+        <translation>Восстановить</translation>
     </message>
 </context>
 <context>
@@ -122,8 +200,12 @@
         <translation>Органайзер сайтов</translation>
     </message>
     <message>
-        <location filename="../src/view/mainwindow.ui" line="43"/>
         <source>Меню</source>
+        <translation type="vanished">Меню</translation>
+    </message>
+    <message>
+        <location filename="../src/view/mainwindow.ui" line="43"/>
+        <source>Menu</source>
         <translation>Меню</translation>
     </message>
     <message>
@@ -144,7 +226,7 @@
     <message>
         <location filename="../src/view/mainwindow.cpp" line="49"/>
         <source>Catalogs</source>
-        <translation type="unfinished">Каталоги</translation>
+        <translation>Каталоги</translation>
     </message>
     <message>
         <location filename="../src/view/mainwindow.cpp" line="58"/>
@@ -170,29 +252,29 @@
 <context>
     <name>Model</name>
     <message>
+        <location filename="../src/model/model.cpp" line="723"/>
+        <source>Number</source>
+        <translation>№</translation>
+    </message>
+    <message>
+        <location filename="../src/model/model.cpp" line="724"/>
+        <source>Catalog</source>
+        <translation>Каталог</translation>
+    </message>
+    <message>
+        <location filename="../src/model/model.cpp" line="725"/>
+        <source>Folder</source>
+        <translation>Папка</translation>
+    </message>
+    <message>
         <location filename="../src/model/model.cpp" line="726"/>
-        <source>Номер</source>
-        <translation type="unfinished"></translation>
+        <source>Name</source>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../src/model/model.cpp" line="727"/>
-        <source>Каталог</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/model/model.cpp" line="728"/>
-        <source>Папка</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/model/model.cpp" line="729"/>
-        <source>Название</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/model/model.cpp" line="730"/>
-        <source>Ссылка</source>
-        <translation type="unfinished"></translation>
+        <source>Link</source>
+        <translation>Ссылка</translation>
     </message>
 </context>
 <context>
@@ -200,7 +282,7 @@
     <message>
         <location filename="../src/dialog/mover.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Перемещение элемента</translation>
     </message>
 </context>
 <context>
@@ -208,7 +290,7 @@
     <message>
         <location filename="../src/dialog/namedialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Диалог</translation>
     </message>
 </context>
 </TS>
