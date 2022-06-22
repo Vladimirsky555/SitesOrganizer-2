@@ -72,11 +72,13 @@ MainWindow::MainWindow(QWidget *parent)
     QToolBar *tb = new QToolBar(this);
     tb->setWindowTitle(tr("ToolBar"));
     tb->addAction(ui->actionFileToModel);
-    addToolBar(Qt::LeftToolBarArea, tb);
+    addToolBar(Qt::TopToolBarArea, tb);
+    mWindows->addAction(tb->toggleViewAction());
 
-    QToolBar *tbEmpty = new QToolBar(this);
-    tbEmpty->setWindowTitle(tr("Empty"));
-    addToolBar(Qt::LeftToolBarArea, tbEmpty);
+//    QToolBar *tbEmpty = new QToolBar(this);
+//    tbEmpty->setWindowTitle(tr("Empty"));
+//    addToolBar(Qt::LeftToolBarArea, tbEmpty);
+//    mWindows->addAction(tbEmpty->toggleViewAction());
 
     //Организация прогресс-бара
     counter = new Counter();
