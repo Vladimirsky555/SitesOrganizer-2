@@ -18,7 +18,6 @@ class LinksView : public QTableView
     Folder *currentFolder;
     bool search;
 
-
 public:
     PosAction *actEdit;
     PosAction *actDelete;

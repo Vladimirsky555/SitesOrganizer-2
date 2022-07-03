@@ -44,10 +44,10 @@ void Model::acceptClear()
     endResetModel();
 }
 
-void Model::acceptPattern(QString pattern)
+void Model::acceptPattern(QString pattern, bool mode)
 {
     this->search = true;
-    searchByPattern(pattern);
+    searchByPattern(pattern, mode);
 }
 
 //void Model::acceptSaveToDb()
@@ -124,7 +124,7 @@ void Model::addCatalog(Data *item)
     return;
 }
 
-void Model::searchByPattern(QString pattern)
+void Model::searchByPattern(QString pattern, bool mode)
 {
     for(int i = 0; i < items->count(); i++)
     {
@@ -132,6 +132,8 @@ void Model::searchByPattern(QString pattern)
     }
 
     items->clear();
+
+    QString str;
 
     beginResetModel();
     for(int i = 0; i < s->getCount(); i++)
@@ -145,13 +147,20 @@ void Model::searchByPattern(QString pattern)
                 int cnt = 0;
                 Link *link = folder->getLinkById(l);
 
+                if(mode){
+                    str = link->linkName();
+                } else {
+                    str = link->Description();
+                }
+
                 QRegExp rx(pattern);
                 if(!checkRegExp(rx))return;
                 int pos = 0;
-                while((pos = rx.indexIn(link->linkName(), pos)) != -1){
+                while((pos = rx.indexIn(str, pos)) != -1){
                     pos += rx.matchedLength();
                     cnt++;
                 }
+
 
                 if(cnt != 0){
                     Data *D = new Data();

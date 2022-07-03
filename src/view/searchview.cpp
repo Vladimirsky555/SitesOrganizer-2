@@ -1,17 +1,15 @@
 #include "searchview.h"
 #include "ui_searchview.h"
 
-#include <QDebug>
 
 SearchView::SearchView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SearchView)
 {
-    ui->setupUi(this);
+    setWindowTitle(tr("Search"));
 
-    ui->btnOK->setDefaultAction(ui->actionOK);
-    connect(ui->actionOK, SIGNAL(triggered()),
-            this, SLOT(sendPattern()));
+    ui->setupUi(this);
+    ui->rName->setChecked(true);
 }
 
 SearchView::~SearchView()
@@ -19,17 +17,17 @@ SearchView::~SearchView()
     delete ui;
 }
 
-void SearchView::sendPattern()
-{
-    QString pattern = ui->edtText->text();
-    emit sendPattern(pattern);
-    emit changeMode(true);
-}
 
 void SearchView::on_edtText_returnPressed()
 {
     QString pattern = ui->edtText->text();
-    emit sendPattern(pattern);
+
+    if(ui->rName->isChecked()){
+        emit sendPattern(pattern, true);
+    } else {
+        emit sendPattern(pattern, false);
+    }
+
     emit changeMode(true);
 }
 

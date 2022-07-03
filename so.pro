@@ -30,7 +30,8 @@ SOURCES += \
     src/view/mainwindow.cpp \
     src/model/model.cpp     \
     src/helpers/posaction.cpp \
-    src/view/searchview.cpp
+    src/view/searchview.cpp \
+    src/helpers/qregexphighlighter.cpp
 
 HEADERS += \
     src/dialog/catalogdialog.h \
@@ -51,7 +52,8 @@ HEADERS += \
     src/view/mainwindow.h \
     src/model/model.h  \
     src/helpers/posaction.h \
-    src/view/searchview.h
+    src/view/searchview.h  \
+    src/helpers/qregexphighlighter.h
 
 FORMS += \
     src/dialog/catalogdialog.ui \

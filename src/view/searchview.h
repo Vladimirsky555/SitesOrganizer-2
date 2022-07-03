@@ -16,11 +16,10 @@ public:
     ~SearchView();
 
 private slots:
-    void sendPattern();
     void on_edtText_returnPressed();
 
 signals:
-    void sendPattern(QString);
+    void sendPattern(QString,bool);
     void changeMode(bool);
 
 

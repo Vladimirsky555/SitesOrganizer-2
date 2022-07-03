@@ -24,11 +24,10 @@ class MainWindow : public QMainWindow
 
     Counter *counter;
     QProgressBar *bar;
-//    QTranslator translator;
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow(){delete ui;}
+    virtual ~MainWindow(){delete ui;}
 
     //Метод для запуска сигнала для отображения папок в FoldersView
     void sendStorage();
@@ -37,13 +36,9 @@ private slots:
     void on_actionFileToModel_triggered();
     void acceptRange(int range);
 
-    void on_actionTranslateToEng_triggered();
-    void on_actionTranslateToRus_triggered();
-
 signals:
     void startImport_File_Model(QString);
     void sendStorageSignal();
-    void saveToDb();
 
 private:
     Ui::MainWindow *ui;

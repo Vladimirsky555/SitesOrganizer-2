@@ -32,7 +32,7 @@ public:
     /************************************************/
     void addItem(Data *item);
     void addCatalog(Data *item);
-    void searchByPattern(QString pattern);
+    void searchByPattern(QString pattern, bool mode);
 
     Data *at(int k);
     Folder *getCurrentFolder();
@@ -70,7 +70,7 @@ private slots:
     void acceptParents(Catalog* catalog, Folder *folder);//Приём папки для отображения в представлении ссылок
     void accept_link_item_selected(QModelIndex index);//Приём индекса из LinkView
     void acceptClear();//очищение списка ссылок по клику на каталог
-    void acceptPattern(QString pattern);
+    void acceptPattern(QString pattern, bool mode);
 //    void acceptSaveToDb();
 
     /************************************************/

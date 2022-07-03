@@ -76,6 +76,7 @@ LinksView::LinksView(QWidget *parent) :
     setSelectionBehavior(QAbstractItemView::SelectRows);
 //    setSelectionMode(QAbstractItemView::SingleSelection);
 
+
     //    horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     horizontalHeader()->setSectionResizeMode(4, QHeaderView::Stretch);
     setColumnHidden(0, true);

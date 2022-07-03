@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setWindowTitle("Органайзер сайтов");
+    setWindowTitle(tr("Sites organizer"));
 
     //    QDesktopWidget desktop;
     //    QRect rect = desktop.availableGeometry(desktop.primaryScreen()); // прямоугольник с размерами экрана
@@ -52,19 +52,6 @@ MainWindow::MainWindow(QWidget *parent)
 //    addDockWidget(Qt::LeftDockWidgetArea, cbD);
 //    mWindows->addAction(cbD->toggleViewAction());
 
-//    cb->addItems(QStringList() << "rus" << "eng");
-
-//    connect(cb, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged),
-//            [=](const QString &str)
-//    {
-//        translator.load(":lang/so_" + str + ".");//Загружаем перевод
-//        qApp->installTranslator(&translator);//Устанавливаем перевод в приложение
-//    });
-
-//    //Сделаем первоначальную инициализацию для окна приложения
-//    translator.load(":lang/so_rus.qm");
-//    qApp->installTranslator(&translator);
-
     SearchView *sv = new SearchView(this);
     QDockWidget *Dsv = new QDockWidget(this);
     Dsv->setWindowTitle(tr("Search"));
@@ -90,16 +77,6 @@ MainWindow::MainWindow(QWidget *parent)
     addDockWidget(Qt::LeftDockWidgetArea, D1);
     mWindows->addAction(D1->toggleViewAction());
 
-
-
-//    FolderView *fv = new FolderView(this);
-//    //fv->setStyleSheet("background: #FAF0E6");
-//    QDockWidget *D1 = new QDockWidget(this);
-//    D1->setWindowTitle(tr("Folders"));
-//    D1->setWidget(fv);
-//    addDockWidget(Qt::LeftDockWidgetArea, D1);
-//    mWindows->addAction(D1->toggleViewAction());
-
     //Припаркованное окно прогрессбара
     bar = new QProgressBar(this);
     QDockWidget *D3 = new QDockWidget(this);
@@ -109,13 +86,11 @@ MainWindow::MainWindow(QWidget *parent)
     mWindows->addAction(D3->toggleViewAction());
 
     //Создание панели инструментов с событиями и пустой
-    QToolBar *tb = new QToolBar(this);
-    tb->setWindowTitle(tr("ToolBar"));
-    tb->addAction(ui->actionFileToModel);
-    tb->addAction(ui->actionTranslateToEng);
-    tb->addAction(ui->actionTranslateToRus);
-    addToolBar(Qt::TopToolBarArea, tb);
-    mWindows->addAction(tb->toggleViewAction());
+//    QToolBar *tb = new QToolBar(this);
+//    tb->setWindowTitle(tr("ToolBar"));
+//    tb->addAction(ui->actionFileToModel);
+//    addToolBar(Qt::TopToolBarArea, tb);
+//    mWindows->addAction(tb->toggleViewAction());
 
     //    QToolBar *tbEmpty = new QToolBar(this);
     //    tbEmpty->setWindowTitle(tr("Empty"));
@@ -174,8 +149,8 @@ MainWindow::MainWindow(QWidget *parent)
             fv, SLOT(acceptCatalog(Catalog*)));
 
     //Передача ключевого слова для поиска в модель из виджета
-    connect(sv, SIGNAL(sendPattern(QString)),
-            lw->model(), SLOT(acceptPattern(QString)));
+    connect(sv, SIGNAL(sendPattern(QString,bool)),
+            lw->model(), SLOT(acceptPattern(QString,bool)));
 
     //Информирование о режиме поиска для представления вывода ссылок
     connect(sv, SIGNAL(changeMode(bool)),
@@ -183,10 +158,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(fv, SIGNAL(changeMode(bool)),
             lw, SLOT(acceptSearchMode(bool)));
-
-    //Сохранение в базу
-    //    connect(this, SIGNAL(saveToDb()),
-    //            lw->model(), SLOT(acceptSaveToDb()));
 
     //По другому не получилось отобразить папки в представлении FoldersView
     //Пришлось создать сигнал из MainWindow, чтобы он запустил сигнал из модели,
@@ -217,22 +188,6 @@ void MainWindow::acceptRange(int range)
     bar->setRange(0, range - 5);
 }
 
-
-
-void MainWindow::on_actionTranslateToEng_triggered()
-{
-    //    QTranslator *pTranslator = APP->getTranslator();
-    //    pTranslator->load(":lan/eng");
-    //    APP->installTranslator(pTranslator);
-}
-
-
-void MainWindow::on_actionTranslateToRus_triggered()
-{
-    //    QTranslator *pTranslator = APP->getTranslator();
-    //    pTranslator->load(":lan/rus");
-    //    APP->installTranslator(pTranslator);
-}
 
 void MainWindow::changeEvent(QEvent *event)
 {

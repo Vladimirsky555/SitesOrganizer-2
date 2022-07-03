@@ -55,6 +55,7 @@
     </message>
     <message>
         <location filename="../src/view/folderview.cpp" line="35"/>
+        <location filename="../src/view/folderview.cpp" line="289"/>
         <source>Delete</source>
         <translation>Delete</translation>
     </message>
@@ -62,6 +63,11 @@
         <location filename="../src/view/folderview.cpp" line="43"/>
         <source>Move</source>
         <translation>Move</translation>
+    </message>
+    <message>
+        <location filename="../src/view/folderview.cpp" line="287"/>
+        <source>Restore</source>
+        <translation type="unfinished">Restore</translation>
     </message>
 </context>
 <context>
@@ -105,33 +111,33 @@
 <context>
     <name>LinksView</name>
     <message>
-        <location filename="../src/view/linksview.cpp" line="26"/>
+        <location filename="../src/view/linksview.cpp" line="28"/>
         <source>Edit</source>
         <translation>Edit</translation>
     </message>
     <message>
-        <location filename="../src/view/linksview.cpp" line="34"/>
+        <location filename="../src/view/linksview.cpp" line="36"/>
         <source>Add</source>
         <translation>Add</translation>
     </message>
     <message>
-        <location filename="../src/view/linksview.cpp" line="41"/>
-        <location filename="../src/view/linksview.cpp" line="127"/>
+        <location filename="../src/view/linksview.cpp" line="43"/>
+        <location filename="../src/view/linksview.cpp" line="130"/>
         <source>Delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../src/view/linksview.cpp" line="49"/>
+        <location filename="../src/view/linksview.cpp" line="51"/>
         <source>Open</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../src/view/linksview.cpp" line="57"/>
+        <location filename="../src/view/linksview.cpp" line="59"/>
         <source>Move</source>
         <translation>Move</translation>
     </message>
     <message>
-        <location filename="../src/view/linksview.cpp" line="125"/>
+        <location filename="../src/view/linksview.cpp" line="128"/>
         <source>Restore</source>
         <translation>Restore</translation>
     </message>
@@ -159,65 +165,72 @@
         <translation>Export links from file</translation>
     </message>
     <message>
-        <location filename="../src/view/mainwindow.ui" line="72"/>
         <source>TranslateToEng</source>
-        <translation>Translate to English</translation>
+        <translation type="vanished">Translate to English</translation>
     </message>
     <message>
-        <location filename="../src/view/mainwindow.ui" line="81"/>
         <source>TranslateToRus</source>
-        <translation>Translate to Russian</translation>
+        <translation type="vanished">Translate to Russian</translation>
     </message>
     <message>
-        <location filename="../src/view/mainwindow.cpp" line="39"/>
+        <location filename="../src/view/mainwindow.cpp" line="18"/>
+        <source>Sites organizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/view/mainwindow.cpp" line="40"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="../src/view/mainwindow.cpp" line="49"/>
+        <location filename="../src/view/mainwindow.cpp" line="57"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/view/mainwindow.cpp" line="66"/>
         <source>Catalogs</source>
         <translation>Catalogs</translation>
     </message>
     <message>
-        <location filename="../src/view/mainwindow.cpp" line="58"/>
+        <location filename="../src/view/mainwindow.cpp" line="75"/>
         <source>Folders</source>
         <translation>Folders</translation>
     </message>
     <message>
-        <location filename="../src/view/mainwindow.cpp" line="66"/>
+        <location filename="../src/view/mainwindow.cpp" line="83"/>
         <source>Progress bar</source>
         <translation>Progress Bar</translation>
     </message>
     <message>
-        <location filename="../src/view/mainwindow.cpp" line="73"/>
         <source>ToolBar</source>
-        <translation>ToolBar</translation>
+        <translation type="vanished">ToolBar</translation>
     </message>
 </context>
 <context>
     <name>Model</name>
     <message>
-        <location filename="../src/model/model.cpp" line="723"/>
+        <location filename="../src/model/model.cpp" line="820"/>
         <source>Number</source>
         <translation>Number</translation>
     </message>
     <message>
-        <location filename="../src/model/model.cpp" line="724"/>
+        <location filename="../src/model/model.cpp" line="821"/>
         <source>Catalog</source>
         <translation>Catalog</translation>
     </message>
     <message>
-        <location filename="../src/model/model.cpp" line="725"/>
+        <location filename="../src/model/model.cpp" line="822"/>
         <source>Folder</source>
         <translation>Folder</translation>
     </message>
     <message>
-        <location filename="../src/model/model.cpp" line="726"/>
+        <location filename="../src/model/model.cpp" line="823"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../src/model/model.cpp" line="727"/>
+        <location filename="../src/model/model.cpp" line="824"/>
         <source>Link</source>
         <translation>Link</translation>
     </message>
@@ -236,6 +249,29 @@
         <location filename="../src/dialog/namedialog.ui" line="14"/>
         <source>Dialog</source>
         <translation>Dialog</translation>
+    </message>
+</context>
+<context>
+    <name>SearchView</name>
+    <message>
+        <location filename="../src/view/searchview.ui" line="31"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/view/searchview.ui" line="39"/>
+        <source>name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/view/searchview.ui" line="46"/>
+        <source>description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/view/searchview.cpp" line="9"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

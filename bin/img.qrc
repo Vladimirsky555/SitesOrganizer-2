@@ -10,8 +10,6 @@
         <file alias="insert">images/insert.png</file>
         <file alias="list">images/list.png</file>
         <file alias="move">images/move.png</file>
-        <file alias="rus">images/russia.png</file>
-        <file alias="eng">images/united-states-of-america.png</file>
         <file alias="ok">images/ok.png</file>
     </qresource>
 </RCC>

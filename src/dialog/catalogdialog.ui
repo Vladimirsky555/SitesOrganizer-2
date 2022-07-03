@@ -56,7 +56,7 @@
      <property name="icon">
       <iconset>
        <normaloff>../../../sitesOrganizer/src/dialog/bin/images/ok.png</normaloff>
-       <normalon>:/images/ok.png</normalon>../../../sitesOrganizer/src/dialog/bin/images/ok.png</iconset>
+       <normalon>:/icons/ok</normalon>../../../sitesOrganizer/src/dialog/bin/images/ok.png</iconset>
      </property>
      <property name="iconSize">
       <size>
