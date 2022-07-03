@@ -14,7 +14,7 @@ Application::Application(int argc, char *argv[]) :
     connectToDataBase();
 
     pTranslator = new QTranslator(this);
-    pTranslator->load(":lan/rus");
+    pTranslator->load(":/lang/so_rus.qm");
     installTranslator(pTranslator);
 }
 
@@ -28,6 +28,11 @@ void Application::connectToDataBase()
         this->openDataBase();
     }
 }
+
+//QTranslator *Application::getTranslator()
+//{
+//    return this->pTranslator;
+//}
 
 //База данных открывается по заданному пути и имени базы данных, если она существует
 bool Application::openDataBase()

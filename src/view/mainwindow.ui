@@ -63,6 +63,24 @@
     </font>
    </property>
   </action>
+  <action name="actionTranslateToEng">
+   <property name="icon">
+    <iconset resource="../../bin/img.qrc">
+     <normaloff>:/icons/eng</normaloff>:/icons/eng</iconset>
+   </property>
+   <property name="text">
+    <string>TranslateToEng</string>
+   </property>
+  </action>
+  <action name="actionTranslateToRus">
+   <property name="icon">
+    <iconset resource="../../bin/img.qrc">
+     <normaloff>:/icons/rus</normaloff>:/icons/rus</iconset>
+   </property>
+   <property name="text">
+    <string>TranslateToRus</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../../bin/img.qrc"/>

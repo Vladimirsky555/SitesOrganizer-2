@@ -6,6 +6,7 @@
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QToolBar>
+#include <QComboBox>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -16,23 +17,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle("Органайзер сайтов");
 
-//    QDesktopWidget desktop;
-//    QRect rect = desktop.availableGeometry(desktop.primaryScreen()); // прямоугольник с размерами экрана
-//    QPoint center = rect.center(); //координаты центра экрана
-//    int x = center.x() - (this->width()/2);  // учитываем половину ширины окна
-//    int y = center.y() - (this->height()/2); // .. половину высоты
-//    center.setX(x);
-//    center.setY(y);
-//   this->move(center);
+    //    QDesktopWidget desktop;
+    //    QRect rect = desktop.availableGeometry(desktop.primaryScreen()); // прямоугольник с размерами экрана
+    //    QPoint center = rect.center(); //координаты центра экрана
+    //    int x = center.x() - (this->width()/2);  // учитываем половину ширины окна
+    //    int y = center.y() - (this->height()/2); // .. половину высоты
+    //    center.setX(x);
+    //    center.setY(y);
+    //   this->move(center);
 
     this->setGeometry(
-        QStyle::alignedRect(
-            Qt::LeftToRight,
-            Qt::AlignCenter,
-            this->size(),
-            qApp->desktop()->availableGeometry()
-        )
-    );
+                QStyle::alignedRect(
+                    Qt::LeftToRight,
+                    Qt::AlignCenter,
+                    this->size(),
+                    qApp->desktop()->availableGeometry()
+                    )
+                );
 
     //Несколько тестовых припаркованных окон. Пункт меню для окон
     //QIcon Ic(":/images/move.png"); //menuBar()->addMenu(Ic, tr("Windows"));
@@ -41,6 +42,35 @@ MainWindow::MainWindow(QWidget *parent)
     //Представление для ссылок
     LinksView *lw = new LinksView(this);
     setCentralWidget(lw);
+
+    //Припаркованное окно представления для каталогов
+
+//    QComboBox *cb = new QComboBox(this);
+//    QDockWidget *cbD = new QDockWidget(this);
+//    cbD->setWindowTitle(tr("Lan Combobox"));
+//    cbD->setWidget(cb);
+//    addDockWidget(Qt::LeftDockWidgetArea, cbD);
+//    mWindows->addAction(cbD->toggleViewAction());
+
+//    cb->addItems(QStringList() << "rus" << "eng");
+
+//    connect(cb, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged),
+//            [=](const QString &str)
+//    {
+//        translator.load(":lang/so_" + str + ".");//Загружаем перевод
+//        qApp->installTranslator(&translator);//Устанавливаем перевод в приложение
+//    });
+
+//    //Сделаем первоначальную инициализацию для окна приложения
+//    translator.load(":lang/so_rus.qm");
+//    qApp->installTranslator(&translator);
+
+    SearchView *sv = new SearchView(this);
+    QDockWidget *Dsv = new QDockWidget(this);
+    Dsv->setWindowTitle(tr("Search"));
+    Dsv->setWidget(sv);
+    addDockWidget(Qt::LeftDockWidgetArea, Dsv);
+    mWindows->addAction(Dsv->toggleViewAction());
 
     //Припаркованное окно представления для каталогов
     CatalogsView *cv = new CatalogsView(this);
@@ -60,6 +90,16 @@ MainWindow::MainWindow(QWidget *parent)
     addDockWidget(Qt::LeftDockWidgetArea, D1);
     mWindows->addAction(D1->toggleViewAction());
 
+
+
+//    FolderView *fv = new FolderView(this);
+//    //fv->setStyleSheet("background: #FAF0E6");
+//    QDockWidget *D1 = new QDockWidget(this);
+//    D1->setWindowTitle(tr("Folders"));
+//    D1->setWidget(fv);
+//    addDockWidget(Qt::LeftDockWidgetArea, D1);
+//    mWindows->addAction(D1->toggleViewAction());
+
     //Припаркованное окно прогрессбара
     bar = new QProgressBar(this);
     QDockWidget *D3 = new QDockWidget(this);
@@ -72,13 +112,15 @@ MainWindow::MainWindow(QWidget *parent)
     QToolBar *tb = new QToolBar(this);
     tb->setWindowTitle(tr("ToolBar"));
     tb->addAction(ui->actionFileToModel);
+    tb->addAction(ui->actionTranslateToEng);
+    tb->addAction(ui->actionTranslateToRus);
     addToolBar(Qt::TopToolBarArea, tb);
     mWindows->addAction(tb->toggleViewAction());
 
-//    QToolBar *tbEmpty = new QToolBar(this);
-//    tbEmpty->setWindowTitle(tr("Empty"));
-//    addToolBar(Qt::LeftToolBarArea, tbEmpty);
-//    mWindows->addAction(tbEmpty->toggleViewAction());
+    //    QToolBar *tbEmpty = new QToolBar(this);
+    //    tbEmpty->setWindowTitle(tr("Empty"));
+    //    addToolBar(Qt::LeftToolBarArea, tbEmpty);
+    //    mWindows->addAction(tbEmpty->toggleViewAction());
 
     //Организация прогресс-бара
     counter = new Counter();
@@ -131,11 +173,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(cv, SIGNAL(sendCatalog(Catalog*)),
             fv, SLOT(acceptCatalog(Catalog*)));
 
+    //Передача ключевого слова для поиска в модель из виджета
+    connect(sv, SIGNAL(sendPattern(QString)),
+            lw->model(), SLOT(acceptPattern(QString)));
+
+    //Информирование о режиме поиска для представления вывода ссылок
+    connect(sv, SIGNAL(changeMode(bool)),
+            lw, SLOT(acceptSearchMode(bool)));
+
+    connect(fv, SIGNAL(changeMode(bool)),
+            lw, SLOT(acceptSearchMode(bool)));
+
     //Сохранение в базу
-//    connect(this, SIGNAL(saveToDb()),
-//            lw->model(), SLOT(acceptSaveToDb()));
-
-
+    //    connect(this, SIGNAL(saveToDb()),
+    //            lw->model(), SLOT(acceptSaveToDb()));
 
     //По другому не получилось отобразить папки в представлении FoldersView
     //Пришлось создать сигнал из MainWindow, чтобы он запустил сигнал из модели,
@@ -168,5 +219,27 @@ void MainWindow::acceptRange(int range)
 
 
 
+void MainWindow::on_actionTranslateToEng_triggered()
+{
+    //    QTranslator *pTranslator = APP->getTranslator();
+    //    pTranslator->load(":lan/eng");
+    //    APP->installTranslator(pTranslator);
+}
 
+
+void MainWindow::on_actionTranslateToRus_triggered()
+{
+    //    QTranslator *pTranslator = APP->getTranslator();
+    //    pTranslator->load(":lan/rus");
+    //    APP->installTranslator(pTranslator);
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    //В случае получения события о смене языка
+    if(event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);//переведём окно заново
+    }
+}
 

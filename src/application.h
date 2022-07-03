@@ -4,7 +4,7 @@
 #include <QApplication>
 #include <QSqlDatabase>
 
-class QTranslator;
+//class QTranslator;
 
 
 class Application : public QApplication
@@ -19,6 +19,7 @@ public:
     virtual ~Application(){};
 
     void connectToDataBase();
+    QTranslator* getTranslator();
 
     // Внутренние методы для работы с базой данных
 private:
@@ -27,5 +28,7 @@ private:
     void closeDataBase();       // Закрытие базы данных
     bool createTable();         // Создание таблицы в базе данных
 };
+
+//#define APP dynamic_cast<Application*>(qApp)
 
 #endif // APPLICATION_H

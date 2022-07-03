@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <QUrl>
-#include <QSqlRecord>
+
 
 Model::Model(QObject *parent) : QSqlTableModel(parent)
 {
@@ -16,6 +16,7 @@ Model::Model(QObject *parent) : QSqlTableModel(parent)
 
     this->items = new QList<Data*>;
     this->s = new Storage();
+    this->search = false;
 
 
     selectAll();//получаем из базы все элементы, заполняя модель Model (QList<Data*> items)
@@ -41,6 +42,12 @@ void Model::acceptClear()
     beginResetModel();
     items->clear();
     endResetModel();
+}
+
+void Model::acceptPattern(QString pattern)
+{
+    this->search = true;
+    searchByPattern(pattern);
 }
 
 //void Model::acceptSaveToDb()
@@ -115,6 +122,61 @@ void Model::addCatalog(Data *item)
     }
 
     return;
+}
+
+void Model::searchByPattern(QString pattern)
+{
+    for(int i = 0; i < items->count(); i++)
+    {
+        delete items->at(i);
+    }
+
+    items->clear();
+
+    beginResetModel();
+    for(int i = 0; i < s->getCount(); i++)
+    {
+        Catalog *catalog = s->getCatalogById(i);
+        for(int j = 0; j < catalog->getCount(); j++)
+        {
+            Folder *folder = catalog->getFolder(j);
+            for(int l = 0; l < folder->Count(); l++)
+            {
+                int cnt = 0;
+                Link *link = folder->getLinkById(l);
+
+                QRegExp rx(pattern);
+                if(!checkRegExp(rx))return;
+                int pos = 0;
+                while((pos = rx.indexIn(link->linkName(), pos)) != -1){
+                    pos += rx.matchedLength();
+                    cnt++;
+                }
+
+                if(cnt != 0){
+                    Data *D = new Data();
+
+                    D->setId(link->Id());
+                    D->setCatalog(catalog->Name());
+                    D->setFolder(folder->Name());
+                    D->setlinkName(link->linkName());
+                    D->setlinkReal(link->linkReal());
+                    D->setDate(link->Date());
+
+                    D->isDeleted = link->isDeleted;
+                    D->isEdited = link->isEdited;
+                    D->isNew = link->isNew;
+                    D->isMoved = link->isMoved;
+                    D->isOpened = link->isOpened;
+
+                    addItem(D);
+                }
+
+            }
+        }
+    }
+
+    endResetModel();
 }
 
 
@@ -217,7 +279,9 @@ void Model::selectAll()
 }
 
 void Model::selectByFolderName(QString folderName)
-{        
+{
+    this->search = false;
+
     for(int i = 0; i < items->count(); i++)
     {
         delete items->at(i);
@@ -389,14 +453,14 @@ int Model::defineCounts(QString filename)
     for(int i = 0; i < 10000; i++){
         QByteArray arr = file.readLine();
         if(QString::fromUtf8(arr) != ""){
-            countLines++;            
+            countLines++;
         } else {
             break;
         }
     }
 
     file.close();
-    return countLines + 1;    
+    return countLines + 1;
 }
 
 QStringList Model::importFolders(int countLines, QString filename)
@@ -425,6 +489,17 @@ QStringList Model::importFolders(int countLines, QString filename)
 
     return folders;
     file.close();
+}
+
+bool Model::checkRegExp(QRegExp rx)
+{
+    if(rx.isValid() && !rx.isEmpty() && !rx.exactMatch(""))
+    {
+        return true;
+    }else{
+        qDebug() << "Некорректный шаблон регулярного выражения!";
+        return false;
+    }
 }
 
 //Импорт всех ссылок с разбивкой на папки
@@ -537,6 +612,7 @@ void Model::editItem(const QModelIndex &I, QWidget *parent)
 
     QVariant linkId = data(index(I.row(), 0), Qt::DisplayRole);
     QString linkName = data(index(I.row(), 3), Qt::DisplayRole).toString();
+
     beginResetModel();
 
     for(int i = 0; i < s->getCount(); i++)
@@ -579,7 +655,7 @@ void Model::newItem()
     Link *L = new Link();
     L->isNew = true;
     L->setDate(QDateTime::currentDateTime());
-    currentFolder->addLink(L);    
+    currentFolder->addLink(L);
 
     LinkDialog ld(L);
     ld.exec();
@@ -638,20 +714,32 @@ void Model::openItem(const QModelIndex &I, QWidget *parent)
 {
     Q_UNUSED(parent)
 
-    QString linkName = data(index(I.row(), 3), Qt::DisplayRole).toString();
-    Link *link = currentFolder->getLinkByName(linkName);
-    link->isOpened = true;//перемещением мы отредактировали ссылку
+    //В режиме поиска только просмотр
+    if(!search){
+        QString linkName = data(index(I.row(), 3), Qt::DisplayRole).toString();
+        Link *link = currentFolder->getLinkByName(linkName);
+        link->isOpened = true;//перемещением мы отредактировали ссылку
 
-    QString linkReal = data(index(I.row(), 4), Qt::DisplayRole).toString();
+        QString linkReal = data(index(I.row(), 4), Qt::DisplayRole).toString();
 
-    if (linkReal == "") return;
-    else {
-        QDesktopServices::openUrl(QUrl(linkReal));
+        if (linkReal == "") return;
+        else {
+            QDesktopServices::openUrl(QUrl(linkReal));
+        }
+
+        beginResetModel();
+        selectByFolderName(currentFolder->Name());
+        endResetModel();
+    } else {
+
+        QString linkReal = data(index(I.row(), 4), Qt::DisplayRole).toString();
+
+        if (linkReal == "") return;
+        else {
+            QDesktopServices::openUrl(QUrl(linkReal));
+        }
     }
 
-    beginResetModel();
-    selectByFolderName(currentFolder->Name());
-    endResetModel();
 }
 
 void Model::moveItem(const QModelIndex &I, QWidget *parent)
@@ -772,9 +860,9 @@ QVariant Model::dataForeground(const QModelIndex &I) const
 QVariant Model::dataTextAlignment(const QModelIndex &I) const
 {
     Q_UNUSED(I)
-//    int Result = Qt::AlignVCenter;
-//    Result |= Qt::AlignLeft;
-//    return Result;
+    //    int Result = Qt::AlignVCenter;
+    //    Result |= Qt::AlignLeft;
+    //    return Result;
     return QVariant();
 }
 
@@ -784,15 +872,15 @@ QVariant Model::dataToolTip(const QModelIndex &I) const
     if(!D) return QVariant();
 
     //Работает в табличном представлении
-//    switch (I.column()) {
+    //    switch (I.column()) {
     //Сработает если дата истечения валидная
-//    case 2: {
-        if(!D->Date().isValid())return QVariant();
-        return QString("Дата создания: %1").arg(D->Date().toString("dd.MM.yyyy"));
-        //return D->Date().toLocalTime();
-//    }
-//    default: return QVariant();
-//    }
+    //    case 2: {
+    if(!D->Date().isValid())return QVariant();
+    return QString("Дата создания: %1").arg(D->Date().toString("dd.MM.yyyy"));
+    //return D->Date().toLocalTime();
+    //    }
+    //    default: return QVariant();
+    //    }
 }
 
 Qt::ItemFlags Model::flags(const QModelIndex &) const

@@ -49,6 +49,7 @@ public slots:
 signals:
     //Отправка каталога и папки в модель для отображения ссылок из базы
     void sendParents(Catalog*,Folder*);
+    void changeMode(bool);
 
     // QAbstractItemView interface
 protected slots:

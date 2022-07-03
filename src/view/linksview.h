@@ -16,6 +16,7 @@ class LinksView : public QTableView
     Model *M;
     QModelIndex currentIndex;
     Folder *currentFolder;
+    bool search;
 
 
 public:
@@ -31,6 +32,7 @@ public:
 
 private slots:
     void contextMenuRequsted(const QPoint &p);
+    void acceptSearchMode(bool search);
 
     // QAbstractItemView interface
 protected slots:

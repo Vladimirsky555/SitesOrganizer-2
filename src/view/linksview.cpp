@@ -11,6 +11,8 @@ LinksView::LinksView(QWidget *parent) :
     M = new Model(this);
     setModel(M);
 
+    this->search = false;
+
     //Передача индекса в Model
     connect(this, SIGNAL(link_item_selected(QModelIndex)),
             M, SLOT(accept_link_item_selected(QModelIndex)));
@@ -100,9 +102,9 @@ void LinksView::contextMenuRequsted(const QPoint &p)
         M.addAction(actOpen);
     }
 
-    M.addAction(actNew);
+    if(!search) M.addAction(actNew);
 
-    if(I.isValid())
+    if(I.isValid() && !search)
     {
         actEdit->I = I;
         actEdit->pWidget = this;
@@ -144,6 +146,11 @@ void LinksView::contextMenuRequsted(const QPoint &p)
     }
 
     M.exec(mapToGlobal(p)); //тоже промахивается
+}
+
+void LinksView::acceptSearchMode(bool search)
+{
+    this->search = search;
 }
 
 

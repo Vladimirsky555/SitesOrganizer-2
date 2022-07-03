@@ -284,9 +284,9 @@ void FolderView::contextMenuRequsted(const QPoint &p)
         actDelete->pWidget = this;        
         if(item(I.row())->font().strikeOut())
         {
-            actDelete->setText("Восстановить");
+            actDelete->setText(tr("Restore"));
         } else {
-            actDelete->setText("Удалить");
+            actDelete->setText(tr("Delete"));
         }
 
         M.addAction(actDelete);
@@ -303,6 +303,9 @@ void FolderView::contextMenuRequsted(const QPoint &p)
 
 void FolderView::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
+    //Выход из режима поиска, вход в режим отображения ссылок в папке
+    emit changeMode(false);
+
     //Вызываем функцию базового класса
     QListWidget::currentChanged(current, previous);
 

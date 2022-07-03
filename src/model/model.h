@@ -17,10 +17,11 @@ class Model : public QSqlTableModel
     QList<Data*> *items;//Список указателей на элементы
     Storage *s;
 
-
     QModelIndex currentIndex;
     Catalog *currentCatalog;
     Folder *currentFolder;
+
+    bool search;//режим поиска
 
 public:
     Model(QObject *parent = nullptr);
@@ -31,6 +32,7 @@ public:
     /************************************************/
     void addItem(Data *item);
     void addCatalog(Data *item);
+    void searchByPattern(QString pattern);
 
     Data *at(int k);
     Folder *getCurrentFolder();
@@ -60,6 +62,7 @@ public:
 private:
     int defineCounts(QString filename);
     QStringList importFolders(int countLines, QString filename);
+    bool checkRegExp(QRegExp rx);
 
 private slots:
     void import_File_Model(QString filename);
@@ -67,6 +70,7 @@ private slots:
     void acceptParents(Catalog* catalog, Folder *folder);//Приём папки для отображения в представлении ссылок
     void accept_link_item_selected(QModelIndex index);//Приём индекса из LinkView
     void acceptClear();//очищение списка ссылок по клику на каталог
+    void acceptPattern(QString pattern);
 //    void acceptSaveToDb();
 
     /************************************************/

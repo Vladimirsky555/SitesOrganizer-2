@@ -29,7 +29,8 @@ SOURCES += \
     src/main.cpp \
     src/view/mainwindow.cpp \
     src/model/model.cpp     \
-    src/helpers/posaction.cpp
+    src/helpers/posaction.cpp \
+    src/view/searchview.cpp
 
 HEADERS += \
     src/dialog/catalogdialog.h \
@@ -49,7 +50,8 @@ HEADERS += \
     src/view/linksview.h \
     src/view/mainwindow.h \
     src/model/model.h  \
-    src/helpers/posaction.h
+    src/helpers/posaction.h \
+    src/view/searchview.h
 
 FORMS += \
     src/dialog/catalogdialog.ui \
@@ -57,7 +59,8 @@ FORMS += \
     src/dialog/linkdialog.ui \
     src/dialog/mover.ui \
     src/dialog/namedialog.ui \
-    src/view/mainwindow.ui
+    src/view/mainwindow.ui \
+    src/view/searchview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -68,4 +71,5 @@ RESOURCES += \
     bin/img.qrc \
     bin/lan.qrc
 
-TRANSLATIONS += bin/so_rus.ts
+TRANSLATIONS += bin/so_rus.ts \
+                bin/so_eng.ts
