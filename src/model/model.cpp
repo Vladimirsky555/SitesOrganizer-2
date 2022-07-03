@@ -239,6 +239,7 @@ void Model::fillStorage()
                     Link *link = new Link(items->at(i)->Id(),
                                           items->at(i)->linkName(),
                                           items->at(i)->linkReal(),
+                                          items->at(i)->Description(),
                                           items->at(i)->Date());
                     folder->addLink(link);
                 }
@@ -377,6 +378,7 @@ void Model::save_to_db_all()
                 D->setFolder(folder->Name());
                 D->setlinkName(link->linkName());
                 D->setlinkReal(link->linkReal());
+                D->setDescription(link->Description());
                 D->setDate(link->Date());
 
                 if(link->isNew){

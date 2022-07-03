@@ -28,14 +28,13 @@ void LinkDialog::save()
 {
     L->setlinkName(ui->edtName->text().simplified());
     L->setlinkReal(ui->edtLink->text().simplified());
-    L->setDescription(ui->edtDescription->toPlainText().simplified());
+    L->setDescription(ui->edtDescription->toPlainText());
 }
 
 void LinkDialog::on_btnCancel_clicked()
 {
     close();
 }
-
 
 void LinkDialog::on_btnAdd_clicked()
 {

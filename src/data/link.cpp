@@ -2,12 +2,14 @@
 
 Link::Link(QObject *parent) : QObject(parent){}
 
-Link::Link(QVariant id, QString link_name, QString link_real, QDateTime date, QObject *parent)
+Link::Link(QVariant id, QString link_name, QString link_real,
+           QString description, QDateTime date, QObject *parent)
     : QObject(parent)
 {
     this->id = id;
     this->link_name = link_name;
     this->link_real = link_real;
+    this->description = description;
     this->date = date;
 
     this->isNew = false;
